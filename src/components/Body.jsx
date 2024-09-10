@@ -1,16 +1,12 @@
 import React from "react";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
-import VideosContainer from "./VideosContainer";
+import { Outlet } from "react-router-dom";
 
 const Body = () => {
   return (
-    <div className="p-3 px-6">
-      <Header />
-      <div className="container grid grid-cols-12">
-        <Sidebar />
-        <VideosContainer />
-      </div>
+    <div className="container grid grid-cols-12">
+      <Sidebar />
+      <Outlet />
     </div>
   );
 };

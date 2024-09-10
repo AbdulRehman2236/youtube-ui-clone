@@ -1,7 +1,11 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../utils/slices/sidebarSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   return (
     <header className="flex w-full p-1 py-2">
       {/* Menu icon */}
@@ -12,6 +16,7 @@ const Header = () => {
         strokeWidth={1.5}
         stroke="currentColor"
         className="size-8"
+        onClick={() => dispatch(toggleSidebar())}
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
