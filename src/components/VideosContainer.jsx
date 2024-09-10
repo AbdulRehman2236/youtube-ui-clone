@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import VideoCard from "./VideoCard";
+import { usePopularVideos } from "../utils/hooks/usePopularVideos";
 
 const VideosContainer = () => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const [videos, setVideos] = useState([]);
-
-  const getVideos = async () => {
-    const data = await fetch(
-      "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=20&key=" +
-        API_KEY
-    );
-    const json = await data.json();
-    setVideos(json.items);
-    console.log(json.items);
-  };
-
-  useEffect(() => {
-    getVideos();
-  }, []);
+  const videos = usePopularVideos();
 
   if (!videos) return;
 
