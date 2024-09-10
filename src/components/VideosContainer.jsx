@@ -24,9 +24,9 @@ const VideosContainer = () => {
   return (
     <div className="col-span-10 p-3 px-4">
       <div className="container mx-auto mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
           {videos.map((video) => (
-            <VideoCard key={video.id} items={video.snippet} />
+            <VideoCard key={video.id} items={video} />
           ))}
         </div>
       </div>
