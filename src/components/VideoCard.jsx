@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDuration, getViewsCount, timeSincePublished } from "../utils/helpers";
+import { formatDuration, getFormattedCount, timeSincePublished } from "../utils/helpers";
 
 const VideoCard = ({ items }) => {
   const { snippet, statistics, contentDetails } = items;
@@ -32,7 +32,7 @@ const VideoCard = ({ items }) => {
 
             <p className="text-slate-600 font-semibold text-sm">{channelTitle}</p>
             <div className="flex space-x-2 pb-6">
-              <p className="text-gray-600 text-sm">{getViewsCount(statistics.viewCount)} views . </p>
+              <p className="text-gray-600 text-sm">{getFormattedCount(statistics.viewCount)} views . </p>
               <p className="text-gray-600 text-sm">{timeSincePublished(publishedAt)}</p>
             </div>
           </div>

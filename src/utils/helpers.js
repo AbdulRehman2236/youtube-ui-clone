@@ -1,8 +1,11 @@
-export const getViewsCount = (views) => {
-  if (views.length <= 6) {
-    return `${(views / 1000).toFixed(2)}K`;
+export const getFormattedCount = (count) => {
+  if (count.length <= 3) {
+    return count;
+  }
+  if (count.length <= 6) {
+    return `${(count / 1000).toFixed(2).slice(0, 3)}K`;
   } else {
-    return `${(views / 1000000).toFixed(2)}M`;
+    return `${(count / 1000000).toFixed(2).slice(0, 3)}M`;
   }
 };
 
