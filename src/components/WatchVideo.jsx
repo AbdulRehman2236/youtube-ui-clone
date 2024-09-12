@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/slices/sidebarSlice";
 import { useGetVideoDetails } from "../utils/hooks/useGetVideoDetails";
+import WatchVideoDescription from "./WatchVideoDescription";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
@@ -132,6 +133,14 @@ const WatchVideo = () => {
           </button>
         </div>
       </div>
+
+      {/* Description */}
+      <WatchVideoDescription
+        statistics={statistics}
+        publishedAt={publishedAt}
+        tags={snippet.tags}
+        description={snippet.description}
+      />
     </>
   );
 };
