@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/slices/sidebarSlice";
 import { useGetVideoDetails } from "../utils/hooks/useGetVideoDetails";
-import { GET_VIDEO_DETAILS_API } from "../utils/constants";
-import { getViewsCount, timeSincePublished } from "../utils/helpers";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
   const dispatch = useDispatch();
-  const [videoDetails, setVideoDetails] = useState([]);
-
-  const getVideoDetails = async (videoId) => {
-    const API_KEY = import.meta.env.VITE_API_KEY;
-    const data = await fetch(GET_VIDEO_DETAILS_API(videoId, API_KEY));
-    const json = await data.json();
-    setVideoDetails(json.items);
-  };
+  const videoDetails = useGetVideoDetails(videoId.get("v"));
 
   useEffect(() => {
-    getVideoDetails(videoId.get("v"));
     dispatch(closeMenu());
   }, []);
 
