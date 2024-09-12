@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import BodyContainer from "./components/BodyContainer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import WatchPage from "./components/WatchPage";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -14,6 +15,10 @@ function App() {
         {
           path: "/",
           element: <BodyContainer />,
+        },
+        {
+          path: "/watch",
+          element: <WatchPage />,
         },
       ],
     },

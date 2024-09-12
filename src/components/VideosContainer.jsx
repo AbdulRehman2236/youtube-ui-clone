@@ -2,6 +2,7 @@ import React from "react";
 import VideoCard from "./VideoCard";
 import { usePopularVideos } from "../utils/hooks/usePopularVideos";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const VideosContainer = () => {
   const isSidebarOpen = useSelector((store) => store.sidebar.isSidebarOpen);
@@ -17,7 +18,9 @@ const VideosContainer = () => {
         } 2xl:grid-cols-5 gap-4`}
       >
         {videos.map((video) => (
-          <VideoCard key={video.id} items={video} />
+          <Link key={video.id} to={"/watch?v=" + video.id}>
+            <VideoCard key={video.id} items={video} />
+          </Link>
         ))}
       </div>
     </div>
