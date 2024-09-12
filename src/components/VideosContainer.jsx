@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const VideosContainer = () => {
   const isSidebarOpen = useSelector((store) => store.sidebar.isSidebarOpen);
-  const videos = usePopularVideos();
+  usePopularVideos();
+  const videos = useSelector((store) => store.videos.videosList);
 
   if (!videos) return;
 

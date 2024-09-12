@@ -4,3 +4,7 @@ export const GET_POPULAR_VIDEOS_API =
 export const GET_VIDEO_DETAILS_API = (videoId, apiKey) => {
   return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${apiKey}`;
 };
+
+export const GET_SEARCH_VIDEOS_API = (keyword, apiKey) => {
+  return `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${apiKey}`;
+};
