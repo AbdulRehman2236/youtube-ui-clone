@@ -5,6 +5,7 @@ import { closeMenu } from "../utils/slices/sidebarSlice";
 import { useGetVideoDetails } from "../utils/hooks/useGetVideoDetails";
 import WatchVideoDescription from "./WatchVideoDescription";
 import { getFormattedCount } from "../utils/helpers";
+import { useGetVideoComments } from "../utils/hooks/useGetVideoComments";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
@@ -12,6 +13,7 @@ const WatchVideo = () => {
   const [isVideoLike, setIsVideoLike] = useState(false);
   const [isVideoDislike, setIsVideoDislike] = useState(false);
   const videoDetails = useGetVideoDetails(videoId.get("v"));
+  useGetVideoComments(videoId.get("v"));
 
   useEffect(() => {
     dispatch(closeMenu());
@@ -157,6 +159,11 @@ const WatchVideo = () => {
         tags={snippet.tags}
         description={snippet.description}
       />
+
+      {/* Comments heading */}
+      <div className="my-6">
+        <h1 className="font-sans font-bold text-xl">{Number(statistics?.commentCount).toLocaleString()} Comments</h1>
+      </div>
     </>
   );
 };

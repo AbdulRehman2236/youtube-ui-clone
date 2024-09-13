@@ -1,8 +1,8 @@
 export const getFormattedCount = (count) => {
-  if (!count) return 0;
+  if (!count) return "0";
 
   if (count.length <= 3) {
-    return count;
+    return `${count}`;
   }
   if (count.length <= 6) {
     return `${(count / 1000).toFixed(2).slice(0, 3)}K`;
