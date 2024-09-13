@@ -6,6 +6,7 @@ import { setVideosList } from "../utils/slices/videosSlice";
 const SuggestionButtonList = () => {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [isActive, setIsActive] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
@@ -20,7 +21,7 @@ const SuggestionButtonList = () => {
     scrollLeft + scrollAmount >= scrollWidth - clientWidth ? setShowRightArrow(false) : setShowRightArrow(true);
   };
 
-  const handleList = async (item) => {
+  const handleList = async (index, item) => {
     const API_KEY = import.meta.env.VITE_API_KEY;
     const searchVideoIds = [];
 
@@ -31,6 +32,7 @@ const SuggestionButtonList = () => {
     const videosData = await fetch(GET_VIDEO_LIST_BY_IDS(searchVideoIds, API_KEY));
     const videosJson = await videosData.json();
     dispatch(setVideosList(videosJson.items));
+    setIsActive(index);
   };
 
   const buttonList = [
@@ -92,8 +94,10 @@ const SuggestionButtonList = () => {
         {buttonList.map((item, index) => (
           <button
             key={index}
-            className="px-4 py-1 whitespace-nowrap text-gray-900 font-semibold text-sm bg-gray-100 rounded-lg hover:bg-gray-200"
-            onClick={() => handleList(item)}
+            className={`px-4 py-1 whitespace-nowrap font-semibold text-sm rounded-lg  ${
+              isActive === index ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+            }`}
+            onClick={() => handleList(index, item)}
           >
             {item}
           </button>
