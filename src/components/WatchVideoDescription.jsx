@@ -21,7 +21,7 @@ const WatchVideoDescription = ({ statistics, publishedAt, tags, description }) =
         <p className="text-black font-semibold text-sm">{getFormattedCount(statistics.viewCount)} views</p>
         <p className="text-gray-900 font-semibold text-sm px-2">{timeSincePublished(publishedAt)}</p>
       </div>
-      <p className="text-blue-700 font-bold font-sans text-sm">#{tags.slice(0, 10).join(" #")}</p>
+      <p className="text-blue-700 font-bold font-sans text-sm">#{tags?.slice(0, 10).join(" #")}</p>
       <div className="text-slate-800 text-sm whitespace-pre-wrap">
         {showDescription ? (
           <>

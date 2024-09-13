@@ -1,4 +1,6 @@
 export const getFormattedCount = (count) => {
+  if (!count) return 0;
+
   if (count.length <= 3) {
     return count;
   }
@@ -29,13 +31,17 @@ export const timeSincePublished = (publishedDate) => {
 };
 
 export const formatDuration = (duration) => {
+  if (duration === "P0D") {
+    return "Live";
+  }
+
   const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
 
   const matches = duration.match(regex);
 
-  const hours = parseInt(matches[1] || "0", 10);
-  const minutes = parseInt(matches[2] || "0", 10);
-  const seconds = parseInt(matches[3] || "0", 10);
+  const hours = parseInt(matches?.[1] || "0", 10);
+  const minutes = parseInt(matches?.[2] || "0", 10);
+  const seconds = parseInt(matches?.[3] || "0", 10);
 
   const formattedHours = hours > 0 ? `${hours}:` : "";
   const formattedMinutes = minutes < 10 && hours > 0 ? `0${minutes}` : minutes;

@@ -6,5 +6,9 @@ export const GET_VIDEO_DETAILS_API = (videoId, apiKey) => {
 };
 
 export const GET_SEARCH_VIDEOS_API = (keyword, apiKey) => {
-  return `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${apiKey}`;
+  return `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=${keyword}&key=${apiKey}`;
+};
+
+export const GET_VIDEO_LIST_BY_IDS = (videoList, apiKey) => {
+  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoList}&key=${apiKey}`;
 };

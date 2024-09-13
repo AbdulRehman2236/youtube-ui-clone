@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { GET_SEARCH_VIDEOS_API, GET_VIDEO_LIST_BY_IDS } from "../utils/constants";
+import { setVideosList } from "../utils/slices/videosSlice";
 
 const SuggestionButtonList = () => {
+  const dispatch = useDispatch();
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -16,21 +20,34 @@ const SuggestionButtonList = () => {
     scrollLeft + scrollAmount >= scrollWidth - clientWidth ? setShowRightArrow(false) : setShowRightArrow(true);
   };
 
+  const handleList = async (item) => {
+    const API_KEY = import.meta.env.VITE_API_KEY;
+    const searchVideoIds = [];
+
+    const data = await fetch(GET_SEARCH_VIDEOS_API(item, API_KEY));
+    const json = await data.json();
+    json.items.map((video) => searchVideoIds.push(video.id.videoId));
+
+    const videosData = await fetch(GET_VIDEO_LIST_BY_IDS(searchVideoIds, API_KEY));
+    const videosJson = await videosData.json();
+    dispatch(setVideosList(videosJson.items));
+  };
+
   const buttonList = [
     "All",
-    "News",
+    "Live",
     "Mufti Rashid Mehmood Razvi",
     "Muhammad Owais Raza Qadri",
-    "Live",
     "JavaScript",
+    "News",
     "IDS",
     "Ala Hazrat",
     "Qasida",
     "Data Type",
     "Code",
+    "Watched",
     "Programming",
     "Recently Uploaded",
-    "Watched",
     "Allama Farooq Razvi",
   ];
 
@@ -76,6 +93,7 @@ const SuggestionButtonList = () => {
           <button
             key={index}
             className="px-4 py-1 whitespace-nowrap text-gray-900 font-semibold text-sm bg-gray-100 rounded-lg hover:bg-gray-200"
+            onClick={() => handleList(item)}
           >
             {item}
           </button>
