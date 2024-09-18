@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { cacheResults } from "../utils/slices/searchSlice";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const searchCache = useSelector((store) => store.search);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchSuggestions();
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
     }, 200);
 
     return () => {
@@ -20,6 +28,8 @@ const SearchBar = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
+
+    dispatch(cacheResults({ [searchQuery]: json[1] }));
   };
 
   return (
@@ -51,13 +61,13 @@ const SearchBar = () => {
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   focusable="false"
-                  ariaHidden="true"
+                  aria-hidden="true"
                   className="size-5"
                 >
                   <path
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                     d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                   ></path>
                 </svg>
                 <li className="font-semibold">{suggestion}</li>
