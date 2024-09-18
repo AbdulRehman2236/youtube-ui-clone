@@ -4,6 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../utils/slices/searchSlice";
 
 const SearchBar = () => {
+  const suggestedList = [
+    "owais raza qadri",
+    "samsung S23",
+    "mufti rashid mehmood razvi",
+    "ids",
+    "react hook form",
+    "useContext react hooks",
+    "frishtay jis k zair hain owais qadri",
+    "redux toolkit",
+    "debouncing in JS",
+    "hum brailey wale hain",
+  ];
   const dispatch = useDispatch();
   const searchCache = useSelector((store) => store.search);
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,25 +66,46 @@ const SearchBar = () => {
       {showSuggestions && (
         <div className="absolute left-56 ml-2 mt-1 z-10 bg-white border w-1/2 h-[430px] border-gray-300 shadow-lg rounded-xl">
           <ul className="mt-6">
-            {suggestions.map((suggestion, index) => (
-              <div key={index} className="flex mt-4 ml-4 space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  focusable="false"
-                  aria-hidden="true"
-                  className="size-5"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
-                    fillRule="evenodd"
-                  ></path>
-                </svg>
-                <li className="font-semibold">{suggestion}</li>
-              </div>
-            ))}
+            {suggestions.length !== 0
+              ? suggestions.map((suggestion, index) => (
+                  <div key={index} className="flex mt-4 ml-4 space-x-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      focusable="false"
+                      aria-hidden="true"
+                      className="size-5"
+                    >
+                      <path
+                        clipRule="evenodd"
+                        d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
+                        fillRule="evenodd"
+                      ></path>
+                    </svg>
+                    <li className="font-semibold">{suggestion}</li>
+                  </div>
+                ))
+              : suggestedList.map((suggestion, index) => (
+                  <div key={index} className="flex mt-4 ml-4 space-x-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+
+                    <li className="font-semibold">{suggestion}</li>
+                  </div>
+                ))}
           </ul>
         </div>
       )}
