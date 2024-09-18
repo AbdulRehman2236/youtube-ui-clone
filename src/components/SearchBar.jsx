@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../utils/slices/searchSlice";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const suggestedList = [
@@ -54,7 +55,11 @@ const SearchBar = () => {
           className="flex w-1/2 px-4 py-1 text-left border rounded-l-full focus:ring-inset focus:outline-none focus:border-violet-900"
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestions(true)}
-          onBlur={() => setShowSuggestions(false)}
+          onBlur={() =>
+            setTimeout(() => {
+              setShowSuggestions(false);
+            }, 100)
+          }
         />
         <span className="flex items-center px-3  sm:text-sm rounded-r-full bg-gray-300">
           <svg fill="currentColor" viewBox="0 0 512 512" className="w-4 h-4 text-gray-800">
@@ -68,43 +73,47 @@ const SearchBar = () => {
           <ul className="mt-6">
             {suggestions.length !== 0
               ? suggestions.map((suggestion, index) => (
-                  <div key={index} className="flex mt-4 ml-4 space-x-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      focusable="false"
-                      aria-hidden="true"
-                      className="size-5"
-                    >
-                      <path
-                        clipRule="evenodd"
-                        d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
-                        fillRule="evenodd"
-                      ></path>
-                    </svg>
-                    <li className="font-semibold">{suggestion}</li>
-                  </div>
+                  <Link to={"/results?search_query=" + suggestion}>
+                    <div key={index} className="flex mt-4 ml-4 space-x-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        focusable="false"
+                        aria-hidden="true"
+                        className="size-5"
+                      >
+                        <path
+                          clipRule="evenodd"
+                          d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
+                          fillRule="evenodd"
+                        ></path>
+                      </svg>
+                      <li className="font-semibold">{suggestion}</li>
+                    </div>
+                  </Link>
                 ))
               : suggestedList.map((suggestion, index) => (
-                  <div key={index} className="flex mt-4 ml-4 space-x-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                    </svg>
+                  <Link to={"/results?search_query=" + suggestion}>
+                    <div key={index} className="flex mt-4 ml-4 space-x-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                      </svg>
 
-                    <li className="font-semibold">{suggestion}</li>
-                  </div>
+                      <li className="font-semibold">{suggestion}</li>
+                    </div>
+                  </Link>
                 ))}
           </ul>
         </div>
