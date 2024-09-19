@@ -10,7 +10,7 @@ const Sidebar = () => {
         <div className="h-full p-3 space-y-2 w-56 text-gray-800 col-span-2 overflow-y-auto hover:overflow-y-scroll">
           <div className="divide-y divide-gray-300">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
-              <li className="dark:bg-gray-100 dark:text-gray-900">
+              <li className="bg-gray-100 text-gray-900">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
