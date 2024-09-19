@@ -6,6 +6,8 @@ import { useGetVideoDetails } from "../utils/hooks/useGetVideoDetails";
 import WatchVideoDescription from "./WatchVideoDescription";
 import { getFormattedCount } from "../utils/helpers";
 import { useGetVideoComments } from "../utils/hooks/useGetVideoComments";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
@@ -34,6 +36,66 @@ const WatchVideo = () => {
   const handleIsVideoDislike = () => {
     setIsVideoDislike(true);
     setIsVideoLike(false);
+  };
+
+  const MySwal = withReactContent(Swal);
+
+  const handleDownload = () => {
+    MySwal.fire({
+      title: (
+        <div className="flex items-center space-x-2">
+          <img src="src/assets/favicon.ico" alt="Premium Logo" className="size-5" />
+          <span className="font-bold text-2xl text-black">Premium</span>
+        </div>
+      ),
+      html: (
+        <div className="text-left">
+          <p className="text-base font-semibold mb-2 text-black">Download restricted by music owner</p>
+          <p className="text-base font-semibold mb-2 text-gray-800">
+            Get YouTube Premium to download this video, use YouTube ad-free, and more.
+          </p>
+          <div className="space-y-3 text-base mt-8 font-semibold">
+            <div>
+              <input type="radio" id="highQuality" className="mr-2" disabled />
+              <label htmlFor="highQuality">High (720p)</label>
+            </div>
+            <div>
+              <input type="radio" id="standardQuality" className="mr-2" defaultChecked />
+              <label className="standardQuality">Standard (480p)</label>
+            </div>
+          </div>
+          <p className="text-sm mt-6">
+            By tapping "Try it free", you are agreeing to these{" "}
+            <a href="#" className="text-blue-600 underline">
+              terms
+            </a>
+            . See the{" "}
+            <a href="#" className="text-blue-600 underline">
+              privacy statement
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-blue-600 underline">
+              restrictions
+            </a>
+            .
+          </p>
+        </div>
+      ),
+      didOpen: () => {
+        const confirmButton = Swal.getConfirmButton();
+        confirmButton.disabled = true;
+        confirmButton.classList.add("cursor-not-allowed");
+      },
+      showCancelButton: true,
+      confirmButtonText: "Try it free",
+      cancelButtonText: "Not now",
+      customClass: {
+        popup: "max-w-md",
+        confirmButton: "bg-blue-600 text-white px-4 py-1 rounded",
+        cancelButton: "bg-gray-300 text-gray-700 px-4 py-1 rounded hover:bg-gray-400 hover:text-white ml-2",
+      },
+      buttonsStyling: false,
+    });
   };
 
   return (
@@ -135,6 +197,7 @@ const WatchVideo = () => {
 
           <button
             type="button"
+            onClick={handleDownload}
             className="flex items-center text-sm px-4 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-10"
           >
             <svg
