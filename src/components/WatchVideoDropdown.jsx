@@ -2,7 +2,7 @@ import React from "react";
 
 const WatchVideoDropdown = () => {
   return (
-    <div className="flex flex-col absolute py-4 bg-white border border-gray-100 rounded-2xl w-32 mt-11">
+    <div className="flex flex-col absolute py-4 font-normal bg-white border border-gray-100 rounded-2xl w-32 mt-[163px] -ml-24">
       <ul className="flex flex-col gap-1">
         <li className="flex px-4 hover:bg-gray-200 p-1">
           <svg

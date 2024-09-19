@@ -218,7 +218,8 @@ const WatchVideo = () => {
           <button
             type="button"
             className="flex items-center text-sm px-2 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
-            onClick={() => setIsMoreOptionsShowing(!isMoreOptionsShowing)}
+            onMouseEnter={() => setIsMoreOptionsShowing(true)}
+            onMouseLeave={() => setIsMoreOptionsShowing(false)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -234,8 +235,8 @@ const WatchVideo = () => {
                 d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
               />
             </svg>
+            {isMoreOptionsShowing && <WatchVideoDropdown />}
           </button>
-          {isMoreOptionsShowing && <WatchVideoDropdown />}
         </div>
       </div>
 
