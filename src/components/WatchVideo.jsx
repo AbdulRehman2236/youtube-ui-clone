@@ -8,12 +8,14 @@ import { getFormattedCount } from "../utils/helpers";
 import { useGetVideoComments } from "../utils/hooks/useGetVideoComments";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import WatchVideoDropdown from "./WatchVideoDropdown";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
   const dispatch = useDispatch();
   const [isVideoLike, setIsVideoLike] = useState(false);
   const [isVideoDislike, setIsVideoDislike] = useState(false);
+  const [isMoreOptionsShowing, setIsMoreOptionsShowing] = useState(false);
   const videoDetails = useGetVideoDetails(videoId.get("v"));
   useGetVideoComments(videoId.get("v"));
 
@@ -216,6 +218,7 @@ const WatchVideo = () => {
           <button
             type="button"
             className="flex items-center text-sm px-2 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
+            onClick={() => setIsMoreOptionsShowing(!isMoreOptionsShowing)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -232,6 +235,7 @@ const WatchVideo = () => {
               />
             </svg>
           </button>
+          {isMoreOptionsShowing && <WatchVideoDropdown />}
         </div>
       </div>
 
