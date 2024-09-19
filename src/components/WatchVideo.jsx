@@ -135,8 +135,8 @@ const WatchVideo = () => {
           </button>
         </div>
 
-        <div className="flex w-full justify-end space-x-4">
-          <div className="flex items-center space-x-2 bg-gray-100 px-4 py-1 rounded-2xl shadow-md h-10">
+        <div className="flex w-full justify-end space-x-3 mt-0.5">
+          <div className="flex items-center space-x-2 bg-gray-100 px-4 py-1 rounded-2xl shadow-md h-9">
             {/* Like Button */}
             <button className="flex items-center text-gray-700 space-x-2" onClick={handleIsVideoLike}>
               <svg
@@ -180,7 +180,7 @@ const WatchVideo = () => {
 
           <button
             type="button"
-            className="flex items-center text-sm px-4 h-10 font-bold rounded-3xl bg-gray-200 text-gray-800 py-0 leading-none"
+            className="flex items-center text-sm px-4 h-9 font-bold rounded-3xl bg-gray-200 text-gray-800 py-0 leading-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +198,7 @@ const WatchVideo = () => {
           <button
             type="button"
             onClick={handleDownload}
-            className="flex items-center text-sm px-4 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-10"
+            className="flex items-center text-sm px-4 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -211,6 +211,26 @@ const WatchVideo = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="m15 15-6 6m0 0-6-6m6 6V9a6 6 0 0 1 12 0v3" />
             </svg>
             Download
+          </button>
+
+          <button
+            type="button"
+            className="flex items-center text-sm px-2 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
           </button>
         </div>
       </div>
