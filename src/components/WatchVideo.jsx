@@ -125,6 +125,7 @@ const WatchVideo = () => {
                 type="text"
                 id="clipboard-input"
                 value={window.location.href}
+                readOnly
                 className="flex-grow pl-2 text-sm bg-transparent focus:outline-none"
               />
               <button

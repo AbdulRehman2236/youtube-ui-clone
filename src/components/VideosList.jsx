@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
+import { usePopularVideos } from "../utils/hooks/usePopularVideos";
 
 const VideosList = () => {
+  usePopularVideos();
   const videos = useSelector((store) => store.videos.videosList);
 
   if (!videos) return;
