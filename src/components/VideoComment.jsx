@@ -4,6 +4,7 @@ import { getFormattedCount, timeSincePublished } from "../utils/helpers";
 const VideoComment = ({ comment }) => {
   const { authorProfileImageUrl, authorDisplayName, publishedAt, textOriginal, likeCount } = comment;
   const [fullText] = useState(textOriginal);
+  const [isReportComment, setIsReportComment] = useState(false);
   const [lessText] = useState(textOriginal.length >= 400 ? textOriginal.slice(0, 400).concat("...") : textOriginal);
   const [showFullText, setShowFullText] = useState(false);
 
@@ -79,6 +80,47 @@ const VideoComment = ({ comment }) => {
             </button>
           </div>
         </div>
+      </div>
+      <div className="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6 cursor-pointer"
+          onMouseEnter={() => setIsReportComment(true)}
+          onMouseLeave={() =>
+            setTimeout(() => {
+              setIsReportComment(false);
+            }, 1000)
+          }
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
+          />
+        </svg>
+        {isReportComment && (
+          <div className="absolute flex bg-white px-4 py-3 rounded-lg shadow-md space-x-3 z-10 cursor-pointer -ml-20">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1}
+              stroke="currentColor"
+              className="size-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
+              />
+            </svg>
+            <button className="text-sm text-gray-900">Report</button>
+          </div>
+        )}
       </div>
     </div>
   );
