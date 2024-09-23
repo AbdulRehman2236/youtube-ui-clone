@@ -100,6 +100,68 @@ const WatchVideo = () => {
     });
   };
 
+  const handleShare = () => {
+    MySwal.fire({
+      title: (
+        <div className="flex justify-center items-center">
+          <span className="font-semibold text-center text-xl text-black">Share in a post</span>
+        </div>
+      ),
+      html: (
+        <>
+          <button
+            type="button"
+            className="text-sm px-4 mt-1 ml-4 font-semibold rounded-3xl bg-black text-white py-0 h-9 cursor-not-allowed"
+            disabled
+          >
+            Create post
+          </button>
+          <span className="flex justify-center mt-4 items-center text-sm mb-2 text-black">No subscribers</span>
+
+          <div className="space-y-4 text-left mt-10 max-w-">
+            {/* Input with copy button */}
+            <div className="flex items-center border border-gray-300 rounded-2xl p-2">
+              <input
+                type="text"
+                id="clipboard-input"
+                value={window.location.href}
+                className="flex-grow pl-2 text-sm bg-transparent focus:outline-none"
+              />
+              <button
+                className="bg-blue-600 text-xs text-white font-bold px-3 py-2 rounded-full ml-2"
+                onClick={() => copyToClipboard()}
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+        </>
+      ),
+      didOpen: () => {},
+      showConfirmButton: false,
+      showCloseButton: true,
+      customClass: {
+        popup: "max-w-md",
+      },
+      buttonsStyling: false,
+    });
+  };
+
+  const copyToClipboard = () => {
+    const input = document.querySelector("[id='clipboard-input']");
+    input.select();
+    document.execCommand("copy");
+
+    Swal.fire({
+      icon: "success",
+      title: "Copied!",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
+
   return (
     <>
       <div className="rounded-xl">
@@ -183,6 +245,7 @@ const WatchVideo = () => {
           <button
             type="button"
             className="flex items-center text-sm px-4 h-9 font-bold rounded-3xl bg-gray-200 text-gray-800 py-0 leading-none"
+            onClick={handleShare}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
