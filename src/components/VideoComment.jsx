@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getFormattedCount, timeSincePublished } from "../utils/helpers";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const VideoComment = ({ comment }) => {
   const { authorProfileImageUrl, authorDisplayName, publishedAt, textOriginal, likeCount } = comment;
@@ -10,6 +12,98 @@ const VideoComment = ({ comment }) => {
 
   const handleText = () => {
     setShowFullText(!showFullText);
+  };
+
+  const MySwal = withReactContent(Swal);
+
+  const handleReportComment = async () => {
+    const { value: reportReason } = await MySwal.fire({
+      title: (
+        <div className="flex items-center justify-start">
+          <span className="text-black text-left font-bold text-xl">Report</span>
+        </div>
+      ),
+      html: `
+        <span class="text-black flex text-left font-bold text-lg">What's going on?</span>
+        <p class="flex text-left text-sm text-gray-900 mt-4 mb-4">We'll check for all Community Guidelines, so don't worry about making the perfect choice.</p>
+        <div class="flex flex-col text-left text-base text-gray-900">
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Sexual content" class="mr-2">
+            Sexual content
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Violent or repulsive content" class="mr-2">
+            Violent or repulsive content
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Hateful or abusive content" class="mr-2">
+            Hateful or abusive content
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Harassment or bullying" class="mr-2">
+            Harassment or bullying
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Harmful or dangerous acts" class="mr-2">
+            Harmful or dangerous acts
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Misinformation" class="mr-2">
+            Misinformation
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Child abuse" class="mr-2">
+            Child abuse
+          </label>
+          <label class="mb-2">
+            <input type="radio" name="reportOption" value="Promotes terrorism" class="mr-2">
+            Promotes terrorism
+          </label>
+          <label>
+            <input type="radio" name="reportOption" value="Spam or misleading" class="mr-2">
+            Spam or misleading
+          </label>
+        </div>
+      `,
+      focusConfirm: false,
+      showCloseButton: true,
+      confirmButtonText: "Report",
+      customClass: {
+        popup: "max-w-md",
+        confirmButton: "bg-gray-900 rounded-full text-sm font-semibold px-40 py-2 mt-6 mb-2",
+      },
+      preConfirm: () => {
+        const selectedOption = document.querySelector('input[name="reportOption"]:checked');
+        if (!selectedOption) {
+          Swal.showValidationMessage("Please select any reason.");
+        }
+        return selectedOption ? selectedOption.value : null;
+      },
+    });
+
+    if (reportReason) {
+      MySwal.fire({
+        title: (
+          <div className="flex items-center justify-start">
+            <span className="text-black text-left font-bold text-xl">Report</span>
+          </div>
+        ),
+        html: `<div>
+        <h1 class="flex items-center justify-start text-base font-bold text-black">Thanks for helping our community</h1>
+        <div class="text-left text-sm text-gray-900 mt-4">
+        <p>
+        Your report helps us protect the community from harmful content.
+        </p>
+        <p class="font-semibold mt-4">If you think someone is in immediate danger, please contact local law enforcement</p>
+        </div>
+        </div>`,
+        showCloseButton: true,
+        customClass: {
+          popup: "max-w-md",
+          confirmButton: "bg-gray-900 rounded-full text-sm font-semibold px-20 py-2 mt-4 mb-2",
+        },
+      });
+    }
   };
 
   return (
@@ -118,7 +212,9 @@ const VideoComment = ({ comment }) => {
                 d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
               />
             </svg>
-            <button className="text-sm text-gray-900">Report</button>
+            <button className="text-sm text-gray-900" onClick={handleReportComment}>
+              Report
+            </button>
           </div>
         )}
       </div>
