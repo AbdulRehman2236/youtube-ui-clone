@@ -18,6 +18,8 @@ const VideosList = () => {
             key={video.id}
             items={video}
             imageClass="h-28 w-[400px]"
+            divClass="mt-1 w-[120%]"
+            headingClass="text-sm"
             showChannelIcon={false}
             containerClass="flex justify-between items-center h-32"
           />

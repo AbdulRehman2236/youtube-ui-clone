@@ -1,7 +1,14 @@
 import React from "react";
 import { formatDuration, getFormattedCount, timeSincePublished } from "../utils/helpers";
 
-const VideoCard = ({ items, imageClass = "w-full h-52", containerClass = "", showChannelIcon = true }) => {
+const VideoCard = ({
+  items,
+  imageClass = "w-full h-52",
+  containerClass = "",
+  divClass = "",
+  headingClass = "",
+  showChannelIcon = true,
+}) => {
   const { snippet, statistics, contentDetails } = items;
   const { title, thumbnails, channelTitle, publishedAt } = snippet;
   return (
@@ -17,7 +24,7 @@ const VideoCard = ({ items, imageClass = "w-full h-52", containerClass = "", sho
         </p>
       </div>
 
-      <div className="px-4 py-2 w-full">
+      <div className={`px-2 ${divClass}`}>
         <div className="flex space-x-3">
           {showChannelIcon && (
             <img
@@ -28,8 +35,8 @@ const VideoCard = ({ items, imageClass = "w-full h-52", containerClass = "", sho
           )}
 
           <div>
-            <h3 className="text-balance font-semibold">
-              {title.length >= 54 ? title.slice(0, 40).concat("...") : title}
+            <h3 className={`${headingClass} font-semibold`}>
+              {title.length >= 40 ? title.slice(0, 35).concat("...") : title}
             </h3>
 
             <p className="text-slate-600 font-semibold text-sm">{channelTitle}</p>
@@ -37,6 +44,22 @@ const VideoCard = ({ items, imageClass = "w-full h-52", containerClass = "", sho
               <p className="text-gray-600 text-sm">{getFormattedCount(statistics.viewCount)} views . </p>
               <p className="text-gray-600 text-sm">{timeSincePublished(publishedAt)}</p>
             </div>
+          </div>
+          <div className="flex items-start justify-start h-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
+              />
+            </svg>
           </div>
         </div>
       </div>
