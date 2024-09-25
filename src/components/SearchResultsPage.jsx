@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchVideoCard from "./SearchVideoCard";
 import { useSelector } from "react-redux";
 import { GET_SEARCH_VIDEOS_API, GET_VIDEO_LIST_BY_IDS } from "../utils/constants";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const SearchResultsPage = () => {
   const [searchKeyword] = useSearchParams();
@@ -31,7 +31,9 @@ const SearchResultsPage = () => {
   return (
     <div className={`${isSidebarOpen ? "col-span-10" : "col-span-12"} mt-6 px-4`}>
       {searchList.items.map((item) => (
-        <SearchVideoCard item={item} />
+        <Link key={item.id} to={"/watch?v=" + item.id}>
+          <SearchVideoCard item={item} />
+        </Link>
       ))}
     </div>
   );
