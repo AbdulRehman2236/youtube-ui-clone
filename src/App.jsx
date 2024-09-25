@@ -36,7 +36,7 @@ function App() {
 
   return (
     <Provider store={appStore}>
-      <div className="p-3 px-6">
+      <div className="py-3 px-2">
         <RouterProvider router={appRouter}></RouterProvider>
       </div>
     </Provider>

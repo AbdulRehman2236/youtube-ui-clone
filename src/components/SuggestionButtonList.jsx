@@ -84,13 +84,6 @@ const SuggestionButtonList = () => {
           scrollbarWidth: "none", // Firefox
         }}
       >
-        {/* Hide scrollbars in WebKit browsers like Chrome, Safari, etc */}
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
-
         {buttonList.map((item, index) => (
           <button
             key={index}

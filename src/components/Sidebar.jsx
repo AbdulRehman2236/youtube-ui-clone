@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <>
       {isSidebarOpen && (
-        <div className="h-full p-3 space-y-2 w-56 text-gray-800 col-span-2 overflow-y-auto hover:overflow-y-scroll">
+        <div className="h-full p-3 space-y-2 w-56 text-gray-800">
           <div className="divide-y divide-gray-300">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="hover:bg-gray-100 hover:rounded-lg text-gray-900">
