@@ -21,4 +21,8 @@ export const GET_VIDEO_COMMENTS_REPLIES = (commentId, apiKey) => {
   return `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=${commentId}&key=${apiKey}`;
 };
 
+export const GET_CHANNEL_DETAILS = (channelId, apiKey) => {
+  return `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${apiKey}`;
+};
+
 export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";

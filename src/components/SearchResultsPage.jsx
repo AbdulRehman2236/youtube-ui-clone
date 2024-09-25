@@ -20,7 +20,6 @@ const SearchResultsPage = () => {
     const videosData = await fetch(GET_VIDEO_LIST_BY_IDS(searchVideoIds, API_KEY));
     const videosJson = await videosData.json();
     setSearchList(videosJson);
-    console.log(videosJson);
   };
 
   useEffect(() => {

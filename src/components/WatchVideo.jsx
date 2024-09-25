@@ -9,6 +9,7 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import WatchVideoDropdown from "./WatchVideoDropdown";
 import CommentsThread from "./CommentsThread";
+import { useGetChannelDetails } from "../utils/hooks/useGetChannelDetails";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
@@ -17,10 +18,11 @@ const WatchVideo = () => {
   const [isVideoDislike, setIsVideoDislike] = useState(false);
   const [isMoreOptionsShowing, setIsMoreOptionsShowing] = useState(false);
   const videoDetails = useGetVideoDetails(videoId.get("v"));
+  const channels = useGetChannelDetails(videoDetails[0]?.snippet?.channelId);
 
   useEffect(() => {
     dispatch(closeMenu());
-  }, []);
+  }, [videoDetails]);
 
   if (videoDetails.length === 0) return;
   const { snippet, statistics } = videoDetails[0];
@@ -181,14 +183,14 @@ const WatchVideo = () => {
       <div className="flex mt-4 w-full">
         <div className="flex w-full">
           <img
-            src="https://yt3.ggpht.com/CuOWVYxYp6iHd2QbDRnFZ81PZw7pCAwWBGU8QQfXlbIJV6RP8ZPKRLNoxKiBZm-kGtCCLaudrfI=s68-c-k-c0x00ffffff-no-rj"
+            src={channels?.snippet?.thumbnails?.medium?.url}
             alt="channel icon"
             className="size-10 rounded-full mt-0.5"
           />
 
           <div className="mx-4">
             <p className="text-slate-800 font-bold text-balance">{channelTitle}</p>
-            <p className="text-sm">242K subscribers</p>
+            <p className="text-sm">{getFormattedCount(channels?.statistics?.subscriberCount)} subscribers</p>
           </div>
 
           <button

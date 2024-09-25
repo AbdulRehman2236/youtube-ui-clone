@@ -1,9 +1,14 @@
 import React from "react";
 import { formatDuration, getFormattedCount, timeSincePublished } from "../utils/helpers";
+import { useGetChannelDetails } from "../utils/hooks/useGetChannelDetails";
 
 const SearchVideoCard = ({ item }) => {
   const { snippet, statistics, contentDetails } = item;
-  const { title, description, thumbnails, channelTitle, publishedAt } = snippet;
+  const { title, description, thumbnails, channelTitle, publishedAt, channelId } = snippet;
+
+  const channels = useGetChannelDetails(channelId);
+  if (!channels) return;
+
   return (
     <div className="bg-white overflow-hidden rounded-xl flex mb-4">
       <div className="relative w-2/3">
@@ -41,7 +46,7 @@ const SearchVideoCard = ({ item }) => {
         </div>
         <div className="flex space-x-3">
           <img
-            src="https://yt3.ggpht.com/CuOWVYxYp6iHd2QbDRnFZ81PZw7pCAwWBGU8QQfXlbIJV6RP8ZPKRLNoxKiBZm-kGtCCLaudrfI=s68-c-k-c0x00ffffff-no-rj"
+            src={channels?.snippet?.thumbnails?.medium?.url}
             alt="channel icon"
             className="size-9 rounded-full mt-0.5"
           />

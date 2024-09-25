@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDuration, getFormattedCount, timeSincePublished } from "../utils/helpers";
+import { useGetChannelDetails } from "../utils/hooks/useGetChannelDetails";
 
 const VideoCard = ({
   items,
@@ -10,7 +11,11 @@ const VideoCard = ({
   showChannelIcon = true,
 }) => {
   const { snippet, statistics, contentDetails } = items;
-  const { title, thumbnails, channelTitle, publishedAt } = snippet;
+  const { title, thumbnails, channelTitle, publishedAt, channelId } = snippet;
+
+  const channels = useGetChannelDetails(channelId);
+  if (!channels) return;
+
   return (
     <div className={`${containerClass} bg-white overflow-hidden rounded-xl`}>
       <div className="relative">
@@ -28,7 +33,7 @@ const VideoCard = ({
         <div className="flex space-x-3">
           {showChannelIcon && (
             <img
-              src="https://yt3.ggpht.com/CuOWVYxYp6iHd2QbDRnFZ81PZw7pCAwWBGU8QQfXlbIJV6RP8ZPKRLNoxKiBZm-kGtCCLaudrfI=s68-c-k-c0x00ffffff-no-rj"
+              src={channels?.snippet?.thumbnails?.medium?.url}
               alt="channel icon"
               className="size-10 rounded-full mt-0.5"
             />
