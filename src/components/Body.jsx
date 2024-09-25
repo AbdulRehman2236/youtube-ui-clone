@@ -8,7 +8,7 @@ const Body = () => {
   return (
     <div className="grid grid-cols-12 h-[88vh] overflow-hidden">
       <div
-        className={`col-span-2 h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100`}
+        className={`col-span-2 h-full overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100 scrollbar-hover`}
       >
         <Sidebar />
       </div>

@@ -13,3 +13,11 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+.scrollbar-hover {
+  overflow-y: hidden;
+}
+
+.scrollbar-hover:hover {
+  overflow-y: auto;
+}
