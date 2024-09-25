@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const isSidebarOpen = useSelector((store) => store.sidebar.isSidebarOpen);
@@ -10,8 +11,8 @@ const Sidebar = () => {
         <div className="h-full p-3 space-y-2 w-56 text-gray-800 col-span-2 overflow-y-auto hover:overflow-y-scroll">
           <div className="divide-y divide-gray-300">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
-              <li className="bg-gray-100 text-gray-900">
-                <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
+              <li className="hover:bg-gray-100 hover:rounded-lg text-gray-900">
+                <Link rel="noopener noreferrer" to="/" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -28,10 +29,10 @@ const Sidebar = () => {
                   </svg>
 
                   <span>Home</span>
-                </a>
+                </Link>
               </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
+              <li className="hover:bg-gray-100 hover:rounded-lg">
+                <Link rel="noopener noreferrer" to="/" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -48,9 +49,9 @@ const Sidebar = () => {
                   </svg>
 
                   <span>Shorts</span>
-                </a>
+                </Link>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +73,7 @@ const Sidebar = () => {
               </li>
             </ul>
             <ul className="pt-4 pb-2 space-y-1 text-sm">
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +93,7 @@ const Sidebar = () => {
                   <span>History</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +114,7 @@ const Sidebar = () => {
                   <span>Playlists</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +134,7 @@ const Sidebar = () => {
                   <span>Watch Later</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +157,7 @@ const Sidebar = () => {
             </ul>
 
             <ul className="pt-4 pb-2 space-y-1 text-sm">
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +177,7 @@ const Sidebar = () => {
                   <span>Trending</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +197,7 @@ const Sidebar = () => {
                   <span>Music</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +217,7 @@ const Sidebar = () => {
                   <span>Gaming</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +237,7 @@ const Sidebar = () => {
                   <span>News</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -259,7 +260,7 @@ const Sidebar = () => {
             </ul>
 
             <ul className="pt-4 pb-2 space-y-1 text-sm">
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +281,7 @@ const Sidebar = () => {
                   <span>Settings</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +301,7 @@ const Sidebar = () => {
                   <span>Report History</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -320,7 +321,7 @@ const Sidebar = () => {
                   <span>Help</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:bg-gray-100 hover:rounded-lg">
                 <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
