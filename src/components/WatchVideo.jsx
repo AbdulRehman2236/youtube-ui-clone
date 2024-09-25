@@ -5,10 +5,10 @@ import { closeMenu } from "../utils/slices/sidebarSlice";
 import { useGetVideoDetails } from "../utils/hooks/useGetVideoDetails";
 import WatchVideoDescription from "./WatchVideoDescription";
 import { getFormattedCount } from "../utils/helpers";
-import { useGetVideoComments } from "../utils/hooks/useGetVideoComments";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import WatchVideoDropdown from "./WatchVideoDropdown";
+import CommentsThread from "./CommentsThread";
 
 const WatchVideo = () => {
   const [videoId] = useSearchParams();
@@ -17,7 +17,6 @@ const WatchVideo = () => {
   const [isVideoDislike, setIsVideoDislike] = useState(false);
   const [isMoreOptionsShowing, setIsMoreOptionsShowing] = useState(false);
   const videoDetails = useGetVideoDetails(videoId.get("v"));
-  useGetVideoComments(videoId.get("v"));
 
   useEffect(() => {
     dispatch(closeMenu());
@@ -316,6 +315,8 @@ const WatchVideo = () => {
       <div className="my-6">
         <h1 className="font-sans font-bold text-xl">{Number(statistics?.commentCount).toLocaleString()} Comments</h1>
       </div>
+
+      <CommentsThread videoId={videoId.get("v")} />
     </>
   );
 };
