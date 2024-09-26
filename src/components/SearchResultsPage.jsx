@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { GET_SEARCH_VIDEOS_API, GET_VIDEO_LIST_BY_IDS } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import SearchPageShimmer from "./SearchPageShimmer";
+import VideoCard from "./VideoCard";
 
 const SearchResultsPage = () => {
   const [searchKeyword] = useSearchParams();
@@ -33,7 +34,12 @@ const SearchResultsPage = () => {
     <div className={`${isSidebarOpen ? "col-span-10" : "col-span-12"} mt-6 px-4`}>
       {searchList.items.map((item) => (
         <Link key={item.id} to={"/watch?v=" + item.id}>
-          <SearchVideoCard item={item} />
+          <div className="hidden md:block">
+            <SearchVideoCard item={item} />
+          </div>
+          <div className="md:hidden">
+            <VideoCard items={item} imageClass="w-full h-52" divClass="py-2 w-full" />
+          </div>
         </Link>
       ))}
     </div>

@@ -11,7 +11,7 @@ const SearchVideoCard = ({ item }) => {
 
   return (
     <div className="bg-white overflow-hidden rounded-xl flex mb-4">
-      <div className="relative w-2/3">
+      <div className="relative sm:w-[85%] lg:w-2/3">
         <img
           src={thumbnails?.medium?.url}
           alt="Card1"
