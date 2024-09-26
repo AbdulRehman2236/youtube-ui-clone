@@ -3,13 +3,14 @@ import VideoCard from "./VideoCard";
 import { usePopularVideos } from "../utils/hooks/usePopularVideos";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const VideosContainer = () => {
   const isSidebarOpen = useSelector((store) => store.sidebar.isSidebarOpen);
   usePopularVideos();
   const videos = useSelector((store) => store.videos.videosList);
 
-  if (!videos) return;
+  if (!videos.length) return <Shimmer />;
 
   return (
     <div className="container mx-auto mt-10">

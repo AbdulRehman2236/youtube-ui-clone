@@ -3,6 +3,7 @@ import SearchVideoCard from "./SearchVideoCard";
 import { useSelector } from "react-redux";
 import { GET_SEARCH_VIDEOS_API, GET_VIDEO_LIST_BY_IDS } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
+import SearchPageShimmer from "./SearchPageShimmer";
 
 const SearchResultsPage = () => {
   const [searchKeyword] = useSearchParams();
@@ -26,7 +27,7 @@ const SearchResultsPage = () => {
     getSearchList();
   }, []);
 
-  if (searchList.length === 0) return;
+  if (searchList.length === 0) return <SearchPageShimmer />;
 
   return (
     <div className={`${isSidebarOpen ? "col-span-10" : "col-span-12"} mt-6 px-4`}>
