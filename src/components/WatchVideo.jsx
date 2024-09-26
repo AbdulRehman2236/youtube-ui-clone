@@ -174,7 +174,7 @@ const WatchVideo = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="rounded-2xl w-[853px] h-[480px]"
+          className="rounded-2xl w-[853px] h-[480px] bg-black"
         ></iframe>
       </div>
 
