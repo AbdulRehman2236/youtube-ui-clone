@@ -69,7 +69,7 @@ const VideoComment = ({ comment }) => {
       showCloseButton: true,
       confirmButtonText: "Report",
       customClass: {
-        popup: "max-w-md",
+        popup: "max-w-sm sm:max-w-md",
         confirmButton: "bg-gray-900 rounded-full text-sm font-semibold px-40 py-2 mt-6 mb-2",
       },
       preConfirm: () => {
@@ -99,7 +99,7 @@ const VideoComment = ({ comment }) => {
         </div>`,
         showCloseButton: true,
         customClass: {
-          popup: "max-w-md",
+          popup: "max-w-sm sm:max-w-md",
           confirmButton: "bg-gray-900 rounded-full text-sm font-semibold px-20 py-2 mt-4 mb-2",
         },
       });
@@ -108,8 +108,8 @@ const VideoComment = ({ comment }) => {
 
   return (
     <div className="flex mb-3">
-      <div className="w-1/12">
-        <img src={authorProfileImageUrl} alt="user-img" className="rounded-full size-10" />
+      <div className="w-1/12 mr-2.5 sm:mr-0">
+        <img src={authorProfileImageUrl} alt="user-img" className="rounded-full siz-8 sm:size-10" />
       </div>
       <div className="w-full">
         <div className="flex text-sm space-x-2">

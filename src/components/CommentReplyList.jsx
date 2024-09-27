@@ -10,7 +10,7 @@ const CommentReplyList = ({ index }) => {
   if (replies.length === 0) return;
 
   return (
-    <div className="ml-14">
+    <div className="ml-9 sm:ml-14">
       {currentComment === index && showReply && replies?.map((reply) => <VideoComment comment={reply?.snippet} />)}
     </div>
   );

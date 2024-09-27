@@ -19,7 +19,7 @@ const CommentsReply = ({ totalReplies, index, commentId }) => {
   };
 
   return (
-    <div className="ml-14 mt-2 mb-4">
+    <div className="ml-9 sm:ml-14 mt-2 mb-4">
       {totalReplies !== 0 && (
         <button
           className="flex text-blue-800 py-1 px-3 font-semibold text-sm hover:bg-blue-200 rounded-full"
