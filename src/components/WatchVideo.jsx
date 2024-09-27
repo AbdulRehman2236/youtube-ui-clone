@@ -143,7 +143,7 @@ const WatchVideo = () => {
       showConfirmButton: false,
       showCloseButton: true,
       customClass: {
-        popup: "max-w-md",
+        popup: "max-w-sm md:max-w-md",
       },
       buttonsStyling: false,
     });
@@ -174,13 +174,13 @@ const WatchVideo = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="rounded-2xl w-[100%] h-[480px] bg-black"
+          className="rounded-2xl w-[100%] h-[250px] sm:h-[480px] bg-black"
         ></iframe>
       </div>
 
       <h3 className="text-xl font-bold mt-2">{title}</h3>
 
-      <div className="flex mt-4 w-full">
+      <div className="flex flex-col md:flex-row mt-4 w-full">
         <div className="flex w-full">
           <img
             src={channels?.snippet?.thumbnails?.medium?.url}
@@ -197,13 +197,13 @@ const WatchVideo = () => {
 
           <button
             type="button"
-            className="text-sm px-4 mt-1 ml-4 font-semibold rounded-3xl bg-black text-white py-0 leading-none h-9"
+            className="text-sm justify-end px-4 mt-1 ml-4 font-semibold rounded-3xl bg-black text-white py-0 leading-none h-9"
           >
             Subscribe
           </button>
         </div>
 
-        <div className="flex w-full justify-end space-x-3 mt-0.5">
+        <div className="flex w-full md:justify-end space-x-3 mt-4 md:mt-0.5">
           <div className="flex items-center space-x-2 bg-gray-100 px-4 py-1 rounded-2xl shadow-md h-9">
             {/* Like Button */}
             <button className="flex items-center text-gray-700 space-x-2" onClick={handleIsVideoLike}>
@@ -221,7 +221,7 @@ const WatchVideo = () => {
                   d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"
                 />
               </svg>
-              <span>{numberOfLikes}</span>
+              <span className="text-sm px-1 font-semibold">{numberOfLikes}</span>
             </button>
 
             {/* Divider */}
@@ -267,7 +267,7 @@ const WatchVideo = () => {
           <button
             type="button"
             onClick={handleDownload}
-            className="flex items-center text-sm px-4 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
+            className="hidden sm:flex items-center text-sm px-4 font-bold rounded-3xl bg-gray-200 text-gray-800 leading-none h-9"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
