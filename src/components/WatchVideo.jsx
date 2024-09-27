@@ -174,7 +174,7 @@ const WatchVideo = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="rounded-2xl w-[853px] h-[480px] bg-black"
+          className="rounded-2xl w-[100%] h-[480px] bg-black"
         ></iframe>
       </div>
 
@@ -189,7 +189,9 @@ const WatchVideo = () => {
           />
 
           <div className="mx-4">
-            <p className="text-slate-800 font-bold text-balance">{channelTitle}</p>
+            <p className="text-slate-800 font-bold text-balance">
+              {channelTitle.length > 20 ? `${channelTitle.slice(0, 20)}...` : channelTitle}
+            </p>
             <p className="text-sm">{getFormattedCount(channels?.statistics?.subscriberCount)} subscribers</p>
           </div>
 
