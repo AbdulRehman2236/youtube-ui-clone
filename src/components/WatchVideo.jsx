@@ -8,7 +8,6 @@ import { getFormattedCount } from "../utils/helpers";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import WatchVideoDropdown from "./WatchVideoDropdown";
-import CommentsThread from "./CommentsThread";
 import { useGetChannelDetails } from "../utils/hooks/useGetChannelDetails";
 
 const WatchVideo = () => {
@@ -319,8 +318,6 @@ const WatchVideo = () => {
       <div className="my-6">
         <h1 className="font-sans font-bold text-xl">{Number(statistics?.commentCount).toLocaleString()} Comments</h1>
       </div>
-
-      <CommentsThread videoId={videoId.get("v")} />
     </>
   );
 };

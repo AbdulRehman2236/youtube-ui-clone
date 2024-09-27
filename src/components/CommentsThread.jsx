@@ -3,9 +3,11 @@ import VideoComment from "./VideoComment";
 import CommentsReply from "./CommentsReply";
 import CommentReplyList from "./CommentReplyList";
 import { useGetVideoComments } from "../utils/hooks/useGetVideoComments";
+import { useSearchParams } from "react-router-dom";
 
-const CommentsThread = ({ videoId }) => {
-  const comments = useGetVideoComments(videoId);
+const CommentsThread = () => {
+  const [videoId] = useSearchParams();
+  const comments = useGetVideoComments(videoId.get("v"));
   if (comments.length === 0) return;
 
   return (
